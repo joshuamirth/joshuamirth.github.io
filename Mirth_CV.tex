@@ -1,0 +1,221 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,letterpaper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% moderncv themes
+\moderncvstyle{classic}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{green}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+%\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+
+% character encoding
+%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+
+% adjust the page margins
+\usepackage[margin=1in]{geometry}
+\usepackage{nicefrac}
+%\usepackage{hyperref}
+%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+
+% personal data
+\name{Joshua}{Mirth}
+\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+\address{??? Campus Delivery}{Fort Collins, Colorado}{Office: Weber 232}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+\phone[fixed]{(970) 491-5284}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+%\phone[fixed]{+2~(345)~678~901}
+%\phone[fax]{+3~(456)~789~012}
+\email{mirth@math.colostate.edu}                               % optional, remove / comment the line if not wanted
+\homepage{www.math.colostate.edu/\textasciitilde mirth/}                         % optional, remove / comment the line if not wanted
+%\social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
+%\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
+%\social[github]{CrossXProduct}                              % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{``A mathematician is a device for turning coffee into theorems.''}                                 % optional, remove / comment the line if not wanted
+
+% to show numerical labels in the bibliography (default is to show no labels); only useful if you make citations in your resume
+%\makeatletter
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+
+% bibliography with mutiple entries
+\usepackage{multibib}
+\newcites{book,misc}{{Books},{Others}}
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%\begin{CJK*}{UTF8}{gbsn}                          % to typeset your resume in Chinese using CJK
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+%\vspace{-.5cm}
+\section{Education}
+\cventry{2015--present}{Doctorate}{(In progress)}{Colorado State University}{\textit{Mathematics}}{Advisor: Henry Adams}  % arguments 3 to 6 can be left empty
+\cventry{2015--2017}{Master of Science}{}{Colorado State University}{\textit{Mathematics}}{Thesis -- \emph{Metric Thickenings of Euclidean Submanifolds}. Advisor: Henry Adams.}
+\cventry{2011--2015}{Bachelor of Science}{Summa Cum Laude, with Honors}{Hillsdale College}{\textit{Mathematics}}{Senior Thesis -- \emph{Functional Analysis and the Dirichlet Problem}, minor in physics. Advisor: David Gaebler.}
+
+\section{Publications}
+\cvitem{Submitted}{\emph{Metric Thickenings of Euclidean Submanifolds} with Henry Adams. Available at arXiv:1709.02492.}
+
+\section{Talks and Presentations}
+\cvitem{2018 Apr.}{\emph{Metric Thickenings of Euclidean Submanifolds}, Graduate Student Topology and Geometry Conference, University of Chicago (upcoming).}
+\cvitem{2017 Dec.}{\emph{Morse Theory: An Introduction}, expository talk at CSU Greenslopes seminar.}
+\cvitem{2017 Sep.}{\emph{Metric Thickenings of Euclidean Submanifolds}, SIAM Central States Sectional Meeting,  Applied Algebraic Topology session, Colorado State University.}
+\cvitem{2017 Jul.}{\emph{Metric Thickenings of Euclidean Submanifolds}, TDA: Theory and Applications, workshop at Macalaster College (Poster presentation).}
+\cvitem{2015 Apr.}{\emph{Functional Analysis and the Dirichlet Problem}, Michigan Undergraduate Mathematics Conference, Hope College.}
+\cvitem{2013 Jul.}{\emph{Simulating Post-Reconnection Coronal Flux Tubes} American Astronomical Society Solar Physics Division Meeting (Poster with Dana Longcope).}
+
+\section{Teaching}
+\cventry{2015--2018}{Graduate Teaching Assistant}{Colorado State University}{Mathematics Department}{}{Instructor of record: %Taught recitation sessions, assisted in lectures, helped write and grade exams, held office hours, developed instructional materials for computer lab sessions.
+%\newline{}%
+%Detailed achievements:%
+\begin{itemize}%
+\item Math 340 -- Introduction to Ordinary Differential Equations, Spring 2018
+\item Math 261 -- Calculus for Physical Scientists III, Fall 2017
+\item Math 160 --  Calculus for Physical Scientists I, Fall 2016, Sprint 2017
+%\item Achievement 2, with sub-achievements:
+%  \begin{itemize}%
+%  \item Sub-achievement (a);
+%  \item Sub-achievement (b), with sub-sub-achievements (don't do this!);
+%    \begin{itemize}
+%    \item Sub-sub-achievement i;
+%    \item Sub-sub-achievement ii;
+%    \item Sub-sub-achievement iii;
+%    \end{itemize}
+%  \item Sub-achievement (c);
+%  \end{itemize}
+%\item Achievement 3.
+\end{itemize}
+Teaching assistant:
+\begin{itemize}
+\item Math 161 -- Calculus for Physical Scientists II, Fall 2015, Sprint 2016 
+\end{itemize}
+Outreach:
+\begin{itemize}
+\item Co-taught (with Henry Adams) a two week course on Applied and Computational Topology at the Universidad de Costa Rica,
+Summer 2017.
+\end{itemize}
+}%\section{Master Thesis}
+%\cvitem{Title}{\emph{Metric Thickenings of Euclidean Submanifols}}
+%\cvitem{Advisor}{Henry Adams}
+%\cvitem{Description}{Short thesis abstract}
+
+\section{Experience}
+%\subsection{Teaching}
+
+\subsection{Computational}
+\cventry{2016--2017}{Programmer}{Colorado State University}{Public Health Department}{}{Developed tools for analysis of motion tracker data in \textsc{MatLab}.}
+\cventry{2013}{REU}{Montana State University}{Solar Physics}{}{Developed and tested numerical models of magnetic reconnection in the solar corona. }%\newline{}Description line 2}
+
+\subsection{Miscellaneous}
+%\cventry{year--year}{Job title}{Employer}{City}{}{Description}
+\cventry{2017-2018}{Sectretary}{SIAM}{Colorado State University Student Chapter}{}{}
+\cventry{2016-2017}{Treasurer}{SIAM}{Colorado State University}{}{}
+\cventry{2014-2015}{Vice-President}{Kappa Mu Epsilon}{Hillsdale College Chapter}{}{}
+\cventry{2013-2014}{Treasurer}{Kappa Mu Epsilon}{Hillsdale College Chapter}{}{}
+\cventry{2013-2015}{Putnam Team}{Hillsdale College}{}{}{}
+
+%\section{Languages}
+%\cvitemwithcomment{Language 1}{Skill level}{Comment}
+%\cvitemwithcomment{Language 2}{Skill level}{Comment}
+%\cvitemwithcomment{Language 3}{Skill level}{Comment}
+
+%\section{Computer skills}
+%\cvitem{Programming}{Python, IDL, C, Java}
+%\cvitem{Scientific}{MatLab, Mathematica}
+%\cvitem{Other}{\LaTeX, HTML, Photo and video editing}
+%
+%\section{Interests}
+%\cvlistitem{Craft coffee -- roasting, brewing, and exploring coffees from around the world.}
+%\cvlistitem{Running -- collegiate track and cross country runner.}
+%\cvlistitem{Biking -- both road and mountain}
+
+\section{Awards}
+\cvlistitem{Taylor Award - Highest GPA among Hillsdale College Mathematics graduates (2015)}
+\cvlistitem{Kimball Medal - top male athlete at Hillsdale College (2015).}
+\cvlistitem{Hillsdale College Dean's List (7 semesters)}
+\cvlistitem{National Merit Scholar (2011)}
+\cvlistitem{NCAA Division II All-American -- three times}
+\cvlistitem{GLIAC conference champion -- four times}
+
+
+%\section{Extra 2}
+%\cvlistdoubleitem{Item 1}{Item 4}
+%\cvlistdoubleitem{Item 2}{Item 5\cite{book1}}
+%\cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
+%
+%\section{References}
+%\begin{cvcolumns}
+%  \cvcolumn{Category 1}{\begin{itemize}\item Person 1\item Person 2\item Person 3\end{itemize}}
+%  \cvcolumn{Category 2}{Amongst others:\begin{itemize}\item Person 1, and\item Person 2\end{itemize}(more upon request)}
+%  \cvcolumn[0.5]{All the rest \& some more}{\textit{That} person, and \textbf{those} also (all available upon request).}
+%\end{cvcolumns}
+
+% Publications from a BibTeX file without multibib
+%  for numerical labels: \renewcommand{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}% CONSIDER MERGING WITH PREAMBLE PART
+%  to redefine the heading string ("Publications"): \renewcommand{\refname}{Articles}
+%\nocite{*}
+%\bibliographystyle{plain}
+%\bibliography{publications}                       % 'publications' is the name of a BibTeX file
+
+% Publications from a BibTeX file using the multibib package
+%\section{Publications}
+%\nocitebook{book1,book2}
+%\bibliographystylebook{plain}
+%\bibliographybook{publications}                   % 'publications' is the name of a BibTeX file
+%\nocitemisc{misc1,misc2,misc3}
+%\bibliographystylemisc{plain}
+%\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
+
+\clearpage
+%-----       letter       ---------------------------------------------------------
+% recipient data
+\recipient{Some Conferecne}{Some University\\123 somestreet\\some city}
+\date{\today}
+\opening{Dear Sir or Madam,}
+\closing{Sincerely,}
+%\enclosure[Attached]{curriculum vit\ae{}}          % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+\makelettertitle
+
+%Personal statement describing scientific interests, research plans, and reasons for wishing to participate.
+
+% About me:
+I am a PhD student at Colorado State University working in teh field of applied algebraic topology. 
+My adivsor is Henry Adams.
+My research interests are in the structure of simplicial complexes, discrete Morse theory, and persistent homology, with applications to dynamics and computations.
+Some current projects include work on metric thickenings of Vietoris--Rips complexes and their structure on graphs and geodesic spaces, and a project with the CSU pattern analysis lab on using persistent homology to compute fractal dimension.% work with Lori Ziegelmeir, Chad Topaz, and Henry Adams on time-varying persistent homology.
+
+% For MN thing:
+Multiparameter persistence is of course closely related to the above topics, and I interested in developing a better understanding of the state of the art with regard to computational tools for persistent homology.
+
+% For Ohio thing:
+I am familiar with and have considerable respect for the work of Matthew Kahle and Facundo Memoli,
+and am excited about the opportunity to develop connections within the topological and geometric data analysis community.
+
+%Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ullamcorper neque sit amet lectus facilisis sed luctus nisl iaculis. Vivamus at neque arcu, sed tempor quam. Curabitur pharetra tincidunt tincidunt. Morbi volutpat feugiat mauris, quis tempor neque vehicula volutpat. Duis tristique justo vel massa fermentum accumsan. Mauris ante elit, feugiat vestibulum tempor eget, eleifend ac ipsum. Donec scelerisque lobortis ipsum eu vestibulum. Pellentesque vel massa at felis accumsan rhoncus.
+
+%Suspendisse commodo, massa eu congue tincidunt, elit mauris pellentesque orci, cursus tempor odio nisl euismod augue. Aliquam adipiscing nibh ut odio sodales et pulvinar tortor laoreet. Mauris a accumsan ligula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse vulputate sem vehicula ipsum varius nec tempus dui dapibus. Phasellus et est urna, ut auctor erat. Sed tincidunt odio id odio aliquam mattis. Donec sapien nulla, feugiat eget adipiscing sit amet, lacinia ut dolor. Phasellus tincidunt, leo a fringilla consectetur, felis diam aliquam urna, vitae aliquet lectus orci nec velit. Vivamus dapibus varius blandit.
+
+%Duis sit amet magna ante, at sodales diam. Aenean consectetur porta risus et sagittis. Ut interdum, enim varius pellentesque tincidunt, magna libero sodales tortor, ut fermentum nunc metus a ante. Vivamus odio leo, tincidunt eu luctus ut, sollicitudin sit amet metus. Nunc sed orci lectus. Ut sodales magna sed velit volutpat sit amet pulvinar diam venenatis.
+
+%Albert Einstein discovered that $e=mc^2$ in 1905.
+
+%\[ e=\lim_{n \to \infty} \left(1+\frac{1}{n}\right)^n \]
+
+\makeletterclosing
+
+%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
+\end{document}
+
+
+%% end of file `template.tex'.
