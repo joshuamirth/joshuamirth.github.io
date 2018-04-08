@@ -1,5 +1,5 @@
 O T10
 O T11
-L MTWF M340 E203
-W T4 Seminar WB223
-W W3 Seminar PAL
+L MTWF8 M340 E203
+W T16 Topology Seminar WB223
+W W15 PAL Seminar PAL
