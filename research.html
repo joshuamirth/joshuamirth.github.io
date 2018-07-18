@@ -3,7 +3,21 @@
 		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
        <link href="style.css" rel="stylesheet" type="text/css" media="all" />
 		<title>Joshua Mirth | CSU Math</title>
-	</head>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script language="JavaScript">
+function ShowHide(divId)
+{
+if(document.getElementById(divId).style.display == 'none')
+{
+document.getElementById(divId).style.display='block';
+}
+else
+{
+document.getElementById(divId).style.display = 'none';
+}
+}
+</script>
+        </head>
 
 <body>
 		<div id="content">
@@ -33,11 +47,23 @@ My research is in applied topology. In particular, I am interested in the struct
 
 <h1> Papers </h1>
 <p>
+"A fractal dimension for measures via persistent homology" </br>
+With Henry Adams, Manuchehr Aminian, Elin Farnell, Michael Kirby, Rachel Neville, Chris Peterson, Patrick Shipman, and Clayton Shonkwiler. </br>
+Forthcoming </br>
+</p>
+<p>
 "Metric Thickenings of Euclidean Submanifolds" </br>
 With Henry Adams. </br>
 Submitted December 2017 </br>
-[<a href="https://arxiv.org/abs/1709.02492">arXiv:1709.02492</a>, <a href="files/masters.pdf">Master's Thesis</a>]
+[<a href="https://arxiv.org/abs/1709.02492">arXiv:1709.02492</a>, <a onclick ="javascript:ShowHide('abEuclidean')" href="javascript:;" >Abstract</a>, <a href="files/masters.pdf">Master's Thesis</a>]
+<div id="abEuclidean" style="display:none;"><p>Given a sample \(X\) from an unknown manifold \(M\) embedded in Euclidean space, it is possible to recover the homology groups of \(M\) by building a Vietoris-Rips or &#268;ech simplicial complex on top of the vertex set \(X\).
+However, these simplicial complexes need not inherit the metric structure of the manifold, in particular when \(X\) is infinite.
+Indeed, a simplicial complex is not even metrizable if it is not locally finite.
+We instead consider metric thickenings of \(X\), called the <i>Vietoris-Rips</i> and <i>&#268;ech thickenings</i>, which are equipped with the 1-Wasserstein metric in place of the simplicial complex topology.
+We show that for Euclidean subsets \(M\) with positive reach, the thickenings satisfy metric analogues of Hausmann's theorem and the nerve lemma (the metric Vietoris-Rips and &#268;ech thickenings of \(M\) are homotopy equivalent to \(M\) for scale parameters less than the reach).
+In contrast to Hausmann's original result, our homotopy equivalence is a deformation retraction, is realized by canonical maps in both directions, and furthermore can be proven to be a homotopy equivalence via simple linear homotopies from the map compositions to the corresponding identity maps.</div>
 </p>
+
                 <div class="footer">
                 <hr />
                 &copy; 2018 Joshua Mirth | <a href="http://www.math.colostate.edu/">Colorado State University Department of Mathematics</a></br></br></br></div>
