@@ -49,12 +49,25 @@ I am co-organizer of the <a href="http://www.math.colostate.edu/~greenslo/">Gree
 <hr />
 
 <h1> Papers </h1>
+
+<p>"On the nonlinear statistics of optical flow."</br>
+With Henry Adams, Johnathan Bush, Brittany Carr, and Lara Kassab.</br>
+To appear in Pattern Recognition Letters, special issue <i>Topological Analysis and Recognition</i> (2018+).</br>
+[<a href="remark/optical_flow.html">Slides</a>, <a onclick="javascript:ShowHide('abFlow')" href="javascript:;" >Abstract</a>]</p>
+<div id="abFlow" style="display:none;"><p>
+In <i>A naturalistic open source movie for optical flow evaluation</i>, Butler et al. create a database of ground-truth optical flow from the computer-generated video short <i>Sintel</i>. 
+We study the high-contrast \(3\times 3\) patches from this video, and provide evidence that this dataset is well-modeled by a <i>torus</i> (a nonlinear \(2\)-dimensional manifold).
+Our main tools are persistent homology and zigzag persistence, which are popular techniques from the field of computational topology.
+We show that the optical flow torus model is naturally equipped with the structure of a fiber bundle, which is furthermore related to the statistics of range images.</div>
+</p>
+
 <p>
 "A fractal dimension for measures via persistent homology" </br>
 With Henry Adams, Manuchehr Aminian, Elin Farnell, Michael Kirby, Rachel Neville, Chris Peterson, and Clayton Shonkwiler. </br>
-[<a href="https://arxiv.org/abs/1808.01079">arXiv:1808.01079</a>, <a onclick ="javascript:ShowHide('abPHDimension')" href="javascript:;" >Abstract</a>]
+Submitted September 2018.</br>
+[<a href="https://arxiv.org/abs/1808.01079">arXiv:1808.01079</a>, <a onclick ="javascript:ShowHide('abPHDimension')" href="javascript:;" >Abstract</a>]</p>
 <div id="abPHDimension" style="display:none;"><p>
-   We use persistent homology in order to define a family of fractal dimensions, denoted \(\dim_{\text{PH}}^i(\mu)\) for each homological dimension \(i\ge 0\), assigned to a probability measure \(\mu\) on a metric space.
+We use persistent homology in order to define a family of fractal dimensions, denoted \(\dim_{\text{PH}}^i(\mu)\) for each homological dimension \(i\ge 0\), assigned to a probability measure \(\mu\) on a metric space.
 The case of \(0\)-dimensional homology (\(i=0\)) relates to work by Michael J Steele (1988) studying the total length of a minimal spanning tree on a random sampling of points.
 Indeed, if \(\mu\) is supported on a compact subset of Euclidean space \(\mathbb{R}^m\) for \(m\ge2\), then Steele's work implies that \(\dim_{\text{PH}}^0(\mu)=m\) if the absolutely continuous part of \(\mu\) has positive mass, and otherwise \(\dim_{\text{PH}}^0(\mu) \lt m\). Experiments suggest that similar results may be true for higher-dimensional homology \(0 \lt i \lt m\), though this is an open question.
 Our fractal dimension is defined by considering a limit, as the number of points \(n\) goes to infinity, of the total sum of the \(i\)-dimensional persistent homology interval lengths for \(n\) random points selected from \(\mu\) in an i.i.d. fashion.
@@ -66,7 +79,7 @@ We prove this limiting curve exists in the case of \(0\)-dimensional homology wh
 "Metric Thickenings of Euclidean Submanifolds" </br>
 With Henry Adams. </br>
 Submitted December 2017 </br>
-[<a href="https://arxiv.org/abs/1709.02492">arXiv:1709.02492</a>, <a onclick ="javascript:ShowHide('abEuclidean')" href="javascript:;" >Abstract</a>, <a href="files/masters.pdf">Master's Thesis</a>]
+[<a href="https://arxiv.org/abs/1709.02492">arXiv:1709.02492</a>, <a onclick ="javascript:ShowHide('abEuclidean')" href="javascript:;" >Abstract</a>, <a href="files/masters.pdf">Master's Thesis</a>]</p>
 <div id="abEuclidean" style="display:none;"><p>Given a sample \(X\) from an unknown manifold \(M\) embedded in Euclidean space, it is possible to recover the homology groups of \(M\) by building a Vietoris-Rips or &#268;ech simplicial complex on top of the vertex set \(X\).
 However, these simplicial complexes need not inherit the metric structure of the manifold, in particular when \(X\) is infinite.
 Indeed, a simplicial complex is not even metrizable if it is not locally finite.
