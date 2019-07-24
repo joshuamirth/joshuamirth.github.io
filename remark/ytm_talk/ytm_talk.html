@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Morse Theory for Metric Thickenings – Joshua Mirth</title>
+     <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { 
+          font-family: 'Droid Serif';
+          font-size: 1.5em;
+          }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+        color: #000000
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    .bigger {
+        font-size: 1.5em;
+    }
+    .source {
+        font-size: 0.7em;
+        color: #888888
+        }
+    .titlepage {
+        background: #1E4D2B
+        }
+    .titlepage h1 {
+        color: #FFFFFF
+        }
+    .titlepage h2 {
+        color: #C8C372
+        }
+    .titlepage h3 {
+        color: #C8C372
+        }
+    .titlepage a {
+        color: #C8C372
+        }
+    .figuresplit {
+        width: 35%;
+        float: left;
+      }
+    .textsplit {
+        width: 60%;
+        float: right;
+        padding-top: 1em;
+      }
+    .fiftyfiftyright {
+        width: 50%;
+        float: right;
+        padding-top 1em;
+        }
+    .fiftyfiftyleft {
+        width: 50%;
+        float: left;
+        padding-top 1em;
+        }
+    .fixedfont {
+        font-size: 1.3em;
+    }
+    .left {
+        float: left;
+    }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, titlepage
+count: false
+
+# Morse theory for Metric Thickenings
+
+## Joshua Mirth
+
+### joint with Henry Adams
+
+---
+
+<!--
+# Outline
+
+.bigger[
+I. What is optical flow?
+
+II. The Dataset
+
+III. Topological Data Analysis
+
+IV. Results
+]
+
+-->
+
+# Motivation
+
+Persistent homology studies sequences of spaces `\( X_0 \subseteq X_1 \subseteq X_2 \subseteq \cdots \subseteq X_n \)`.
+Typically constructed with either _sublevel sets_ or _Vietoris–Rips_ complexes.
+
+**Definition:** The Vietoris–Rips simplicial complex on a metric space `\(X\)` at scale parameter `\(r\)` contains a `\(k\)`-simplex `\(\sigma = [x_0 , \ldots , x_k]\)` for every set of `\(k+1\)` points `\(\{ x_0 , \ldots , x_k\}\)` in `\(X\)` with 
+$$
+\max_{i,j\in[0,\ldots,k]} d(x_i,x_j) \le r .
+$$
+
+--
+
+Any sequence `\(r_0 \lt r_1 \lt \cdots \lt r_n\)` gives a sequence 
+$$
+\mathrm{VR}(X;r_0) \subseteq \mathrm{VR}(X;r_1) \subseteq \cdots \subseteq \mathrm{VR}(X;r_n).
+$$
+
+---
+
+Intuitively, `\(\mathrm{VR}(X;r)\)` thickens the space `\(X\)`:
+
+.fiftyfiftyleft[<img src="random_circle_data.png" width=90% height=90% />
+
+A set of data `\(X) \subset \mathbb{R}^2\)`.]
+
+.fiftyfiftyright[<img src="vr_random_circle_data.png" width=90% height=90% />
+
+The Vietoris–Rips complex of `\(X\)`.]
+
+--
+
+.left[**Warning:** This is not a rigorous statement!]
+
+---
+
+**Definition:** A metric thickening of a space `\((X,d_X)\)` is a metric space `\((Z,d_Z)\)` and a map `\(\iota \colon X \to Z \)` such that `\(\iota\)` is an isometry onto its image.
+
+There is a canonical inclusion `\(\iota \colon X \hookrightarrow \mathrm{VR}(X;r)\)` given by `\(x \mapsto [x]\)`.
+
+However, `\(\iota\)` is not even continuous when `\(X\)` is not discrete. (The vertex set of a simplicial complex has the discrete topology!)
+
+--
+
+**Example:** If `\(X = \mathbb{S}^1\)`, then `\(\mathrm{VR}(X;0)\)` is an uncountable set of discrete points.
+
+.center[<img src="circle_explode.png" width=90% height=90% /> 
+
+`\(\mathbb{S}^1\)` and `\(\mathrm{VR}(\mathbb{S}^1;0)\)` (With uncountably many points on the right!)]
+
+
+---
+
+# Vietoris–Rips Thickenings 
+
+Reinterpret simplices as discrete _probability measures_ on `\(X\)`.
+
+* In any simplicial complex, a point in a simplex is given by barycentric coordinates: if `\(\sigma = [x_0 , \ldots , x_k]\)`, then any `\(x \in \sigma\)` is given by
+`$$
+x = \sum_{i=0}^{k} \lambda_{i} x_{i}.
+$$`
+
+* Barycentric coordinates can be interpreted as probability measures:
+`$$
+\displaystyle \sum_{i=0}^{k} \lambda_{i} x_{i} \iff \sum_{i=0}^{k} \lambda_{i} \delta[x_{i}] .
+$$`
+
+* The Vietoris–Rips metric thickening, `\(\mathcal{VR}(X;r)\)`, consists of measures corresponding to simplices in `\(\mathrm{VR}(X;r)\)`.
+
+---
+
+# The Wasserstein Distance
+
+The space of probability measures `\(\mathcal{P}(X)\)` can be metrized with the Wasserstein distance.
+
+`$$
+\displaystyle W_2(\mu,\nu)^2 = \inf_{\gamma} \int_{X \times X} d^2(x,y) d\gamma
+$$`
+
+where the infimum is taken over all measures `\(\gamma\)` whose marginals are `\(\mu\)` and `\(\nu\)`.
+
+With this metric, `\(W_2(\delta[x_0],\delta[x_1]) = d(x_0,x_1)\)`, so the inclusion `\(\iota \colon X \to \mathcal{VR}(X;r) \)` is continuous.
+
+--
+
+**Question:** what is the homotopy type of `\(\mathcal{VR}(X;r)\)`, and how does it evolve as `\(r\)` increases?
+
+---
+
+# Known Results
+
+**Theorem:** [Hausmann] For a Riemannian manifold `\(M\)`, and sufficiently small `\(r \gt 0\)`, there is a homotopy equivalence `\(\mathrm{VR}(M;r) \simeq M\)`.
+
+**Theorem:** For a Riemannian manifold `\(M\)` [Adamaszek, Adams, Frick] or a smooth manifold `\(M \subseteq \mathbb{R}^n\)` with the Euclidean distance [Adams, M.] and small `\(r\)` there is a homotopy equivalence `\(\mathcal{VR}(M;r) \simeq M\)`.
+
+--
+
+There are many proofs of (some form of) these theorems!
+
+* For spheres: [Adamaszek, Adams] [Zaremsky]
+* For Riemannian manifolds [Hausmann] [Latschev] [Adamaszek, Adams, Frick]
+* For Euclidean submanifolds [Niyogi, Smale, Weinberger] [Adams, M.]
+
+---
+
+_Proof Sketch:_ (For `\(M = \mathbb{S}^1\)`) Let `\(\iota\)` be the canonical inclusion of `\(\mathbb{S}\)` into `\(\mathcal{VR}(\mathbb{S};r)\)`. If `\(r\)` is sufficiently small, the Fréchet mean
+$$
+F(\mu) := \mathrm{argmin}_{p \in M} \int_M d^2(x,p) d\mu(x)
+$$
+is well-defined and continuous on `\(M = \mathbb{S}^1\)`.
+Then `\(F \circ \iota = \mathrm{id}\)` and `\(\iota \circ F \simeq \mathrm{id}\)` by the homotopy shown below:
+
+.center[<img src="homotopy2.gif" width=40% height=40% />
+
+Path between `\(\mu\)` (in gold) and its Fréchet mean (in black).]
+
+---
+
+# Corollaries:
+
+**Corollary 1:** The `\(k\)`-skeleton of `\(\mathcal{VR}(\mathbb{S}^1;r)\)` is homotopy equivalent to `\(\mathbb{S}^1\)` for sufficiently small `\(r\)`.
+
+**Corollary 2:** The set of all measures with support bounded in diameter by `\(r\)` is homotopy equivalent to `\(\mathbb{S}^1\)` for sufficiently small `\(r\)`.
+
+(These require the preceding proof.)
+
+---
+
+For larger `\(r\)`, `\(\mathcal{VR}(M;r)\)` is not homotopy equivalent to `\(M\)`.
+
+.fiftyfiftyleft[<img src="r_small_enough.png" width=90% height=90% />
+`\(\mathcal{VR}(\mathbb{S}^1;r)\)` for `\(r\)` sufficiently small.]
+
+.fiftyfiftyright[<img src="r_too_big.png" width=90% height=90% />
+`\(\mathcal{VR}(\mathbb{S}^1;r)\)` for `\(r\)` too big.]
+
+The critical scale is `\(r = \frac{2\pi}{3}\)`, at which `\(\mathcal{VR}(\mathbb{S}^1;\frac{2\pi}{3}) \simeq \mathbb{S}^3 \)`. There exist measures at this scale which do not have a unique Fréchet mean.
+
+---
+
+class: middle, center, titlepage
+count: false
+
+# Morse Theory and Wasserstein Spaces
+
+---
+
+# Recall: Morse Lemmas
+
+Let `\(f\)` be a Morse function on a manifold `\(M\)`.
+
+**Lemma A:** If `\([a,b]\)` contains no critical values of `\(f\)`, then the sublevel sets `\(f^{-1}(-\infty,a]\)` and `\(f^{-1}(-\infty,b]\)` are homotopy equivalent.
+
+_Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` along the gradient of `\(f\)`.
+
+**Lemma B:** If `\([a,b]\)` contains exactly one critical value, `\(c\)`, of `\(f\)`, then `\(M^b \simeq M^a \cup D^k\)` where `\(k\)` is the index of `\(f^{-1}(c)\)`.
+
+---
+
+The Fréchet variance of a measure `\(\mu\)` with mean `\(\bar{\mu} \in M\)` is
+$$
+V(\mu) := \int_M d^2(x,\bar{\mu}) d\mu(x) .
+$$
+Intuitively measures the "spread" of the support of the measure.
+
+--
+
+**Conjecture:** The homotopy in the preceding proof is a flow along `\(-\nabla V\)`. Moreover, Fréchet variance serves as a type of Morse function on `\(\mathcal{VR}(X;r)\)`, and flowing along `\(-\nabla V\)` gives a version of Morse Lemma A.
+
+--
+
+... Does `\(\mathcal{VR}(X;r)\)` have enough structure for "gradient" and "flow" to be meaningful?
+
+
+---
+
+There is a differentiable structure on `\(\mathcal{P}(X)\)`, the space of probability measures on `\(M\)` with the `\(W_2\)` metric:
+
+* There is a tangent space, and for "nice" real-valued functions `\(F\)` on `\(\mathcal{P}(M)\)` there is a gradient, defined by
+`$$
+\lim_{\nu \to \mu} \frac{F(\nu) - F(\mu) - \int_{M \times M} \langle \nabla F , y - x \rangle d\gamma(x,y)}{W_2(\mu,\nu)} = 0 .
+$$`
+* The continuity equation
+$$
+\frac{\partial \mu}{\partial t} + \mathrm{div}_\mu(v_t)
+$$
+defines the flow of a vector field `\(v_t\)`.
+* **Theorem:** [Ambrosio, Gigli, Savaré] Every reasonably smooth curve in `\(\mathcal{P}(M)\)` has an associated velocity vector field.
+* Differential forms and De Rahm cohomology are defined [Gangbo, Kim, Pacini].
+
+Long term goal: understand the homotopy type of `\(\mathcal{P}(M)\)` and "nice" subspaces using Morse theory.
+
+---
+
+class: middle, center, titlepage
+count: false
+
+# Thank you!
+
+### Questions?
+
+### (Slides available at https://www.math.colostate.edu/~mirth/talks.html )
+
+---
+
+# References:
+
+.source[
+* Michal Adamaszek and Henry Adams. The Vietoris–Rips complexes of a circle. _Pacific Journal of Mathematics, 290(1):1-40, 2018.
+* Michal Adamaszek, Henry Adams, Florian and Frick. Metric reconstruction via optimal transport. _SIAM Journal on Applied Algebra and Geometry_, 2(4):597-619, 2018.
+* Henry Adams and Joshua Mirth. Metric thickenings of Euclidean submanifolds. _Topology and its Applications_, 254:69-84, 2019.
+* Jean-Claude Hausmann. On the Vietoris–Rips complexes and a cohomology theory for metric spaces. _Annals of Mathematics Studies, 138:175-188, 1995.
+* Luigi Ambrosio, Nicola Gigli, and Giuseppe Savaré. _Gradient flows: in metric spaces and in the space of probability measures_. Springer Science and Business Media, 2008.
+* Wilfrid Gangbo, Hwa Kil Kim, and Tommaso Pacini. _Differential forms on wasserstein space and infinite-dimensional Hamiltonian systems_. American Mathematical Society, 2010.
+* Janko Latschev. Vietoris-Rips complexes of metric spaces near a closed Riemannian manifold. _Archiv der Mathematik_, 77(6):522-528, 2001.
+* John Milnor. _Morse Theory_. Annals of Mathematics Studies. Princeton University Press, 1969.
+* Partha Niyogi, Stephen Smale, and Shmuel Weinberger. Finding the homology of submanifolds with high confidence from random samples. _Discrete and Computational Geometry_, 39(1-3):419-441, 2008.
+* Céderic Villani. _Optimal transport: old and new_, volume 338, Springer Science and Business Media, 2008.
+* Matthew Zaremsky. Bestvina-Brady discrete Morse theory and Vietoris–Rips complexes. _arXiv preprint arXiv:1812.10976_, 2018.
+]
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script type="text/javascript">
+        var slideshow = remark.create({
+            // Set properties for the slideshow.
+            // Display ratio, default: '4:3', alternative: '16:9'.
+            ratio: '4:3',
+            // Enable or disable counting of incremental slides in the slide counting
+            countIncrementalSlides: false
+        });
+        // Setup MathJax
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        });
+        MathJax.Hub.Configured();
+    </script>
+ </body>
+</html>
+
+
+---
+
+
+Old Stuff
+
+<!-- Keep as example of picture for now:
+.center[<img src="http://sintel.is.tue.mpg.de/assets/canonical/0/4.gif" alt="Sintel image" height=80% width=80% /> -->
+
+<!-- Keep as example of image source
+.source[(Source: http://sintel.is.tue.mpg.de/)]] -->
+
+---
+
+# Optical flow
+
+.figuresplit[The problem is ill-posed!
+.center[<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Barber-pole-01.gif"/>
+
+.source[(Source: Wikipedia)]]]
+--
+
+.textsplit[
+* Actual motion could be either rotation about vertical axis, <i>or</i> sliding vertically!]
+--
+.textsplit[
+* Algorithms have to make assumptions about which is more likely.]
+--
+.textsplit[
+* Encoding optical flow data as points in `\(\mathbb{R}^n\)` gives a <i>space</i> of optical flow data.]
+--
+.textsplit[
+* The topological/geometric structure of (dense subsets of) this space may reveal plausible assumptions.
+]
+
+<!-- barber's pole animation 
+    <img src="http://i.imgur.com/2jNOp.gif" width=60% height=60% />
+.center[<div style="width:600px;height:320px;overflow:hidden">
+</div>-->
+
+
+---
+
+# The Dataset:
+
+* Optical flow data is hard to obtain. (No tool measures ground truth optical flow.)
+
+.center[<iframe width="560" height="315" src="https://www.youtube.com/embed/ZmiBI4tPk_o?start=12" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>]
+--
+
+* Sintel – Open source animated film made with Blender.
+--
+
+* Can compute <i>exact</i> optical flow!
+
+???
+Mention old datasets.
+
+---
+
+# Processing
+
+* Randomly sample 400,000 size `\(3\times 3\)` patches from the 1041 fields in the Sintel data set.
+--
+
+* Patches contain both vertical and horizontal components. Rearrange into a length-18 vector.
+--
+
+* Compute "contrast norm", normalize, and select only high-contrast patches.
+--
+
+* Randomly downsample to 50,000 data points.
+--
+
+* Pull out a dense core subset using `\(k\)`-th nearest neighbor estimator.
+
+.center[<img src="patches_k500p30.png" width=50% height=50%/>]
+
+---
+
+class: middle, center, titlepage
+count: false
+
+# Interlude:
+### Some algebraic topology
+
+---
+
+# Fiber bundles:
+
+A <i>Fiber bundle</i> consists of spaces `\(F \to E \xrightarrow{\pi} B \)`, the "fiber", "total space", and "base space", respectively, where `\(\pi^{-1}(B)\)` locally resembles `\(B \times F\)`.
+
+.figuresplit[
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Torus_cycles.svg/1200px-Torus_cycles.svg.png" alt="Torus cycles.svg" width=90% height=90%/>
+.center[.source[(Source: wikipedia)]]
+]
+
+.textsplit[
+The torus is a fiber bundle over `\(\mathbb{S}^1\)`:
+$$
+\mathbb{S}^1 \to T \xrightarrow{\pi} \mathbb{S}^1
+$$
+The base space is in pink.
+An example fiber is in red.]
+--
+
+.textsplit[
+This is not the only possibility!
+]
+
+---
+
+# Fiber bundles:
+
+A <i>Fiber bundle</i> consists of spaces `\(F \to E \xrightarrow{\pi} B \)`, the "fiber", "total space", and "base space", respectively, where `\(\pi^{-1}(B)\)` locally resembles `\(B \times F\)`.
+
+.figuresplit[
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Klein_bottle.svg/1200px-Klein_bottle.svg.png" width="70%" height="70%" align=center/>
+.center[.source[(Source: Wikipedia)]]
+]
+
+.textsplit[
+The Klein bottle is also a fiber bundle over `\(\mathbb{S}^1\)`, with fibers `\(\mathbb{S}^1\)`!
+$$
+\mathbb{S}^1 \to K \xrightarrow{\pi} \mathbb{S}^1
+$$
+
+]
+
+---
+
+# Topological Data Analysis
+
+Turn a data set into a topological space (simplicial complex) by "thickening" it:
+
+.center[<img src="complex.png" width=70% height=70% />]
+
+<b>Homology:</b> Turn a topological space `\(X \)` into a vector space `\(H_1(X)\)` such that dimension is number of "loops" in `\(X\)`.
+Calculation reduces to linear algebra.
+--
+
+* Depends on amount of thickening! (Scale parameter.)
+
+---
+
+## Persistent Homology:
+
+Increasing sequence of spaces `\(\{ X_i \hookrightarrow X_{i+1}\}\)` turns into sequence of vector spaces and linear maps `\(H_1(X_i) \to H_1(X_{i+1})\)` that track how loops evolve.
+Also reduces to linear algebra!
+
+.center[<video width="480" height="360" controls loop autoplay>
+    <source src="growingFiltration2.mov" type="video/mp4">
+</video>
+
+.source[(Credit: Henry Adams)]]
+
+---
+
+count: false
+
+## Persistent Homology:
+
+Increasing sequence of spaces `\(\{ X_i \hookrightarrow X_{i+1}\}\)` turns into sequence of vector spaces and linear maps `\(H_1(X_i) \to H_1(X_{i+1})\)` that track how loops evolve.
+Also reduces to linear algebra!
+
+Display the result as either <b>barcodes</b> or persistence diagrams.
+
+.center[<img src="lazyWitness.png" width=100% height=100% />]
+
+---
+
+count: false
+
+## Persistent Homology:
+
+Increasing sequence of spaces `\(\{ X_i \hookrightarrow X_{i+1}\}\)` turns into sequence of vector spaces and linear maps `\(H_1(X_i) \to H_1(X_{i+1})\)` that track how loops evolve.
+Also reduces to linear algebra!
+
+Display the result as either barcodes or <b>persistence diagrams</b>.
+
+.center[<img src="angle3k300c50_diagram1.png" width=60% height=60% />]
+
+
+---
+
+## Zig-Zag Persistence:
+
+Bi-directional sequence of spaces that turns into bi-directional sequence of vector spaces tracking how loops evolve.
+Reduces to harder linear algebra (quiver representations).
+
+.center[<img src="zigzag_illustration.png" width=70% height=70% />]
+
+Corresponds to
+$$
+\mathbb{R} \hookrightarrow \mathbb{R}^3 \hookleftarrow \mathbb{R}\hookrightarrow \mathbb{R}^3 \hookleftarrow \mathbb{R}
+$$
+--
+
+* This is the version we will need!
+
+???
+
+Draw a zig-zag sequence on the board?
+
+---
+
+class: middle, center, titlepage
+count: false
+
+# Results
+
+---
+
+# Horizontal flow circle
+
+Start with the densest 30% of points and compute <b>persistent homology</b>.
+
+<img src="lazyWitness.png" width=100% height=100% />
+.figuresplit[.center[<img src="patches_k500p30.png" width=100% height=100%/>]]
+
+.textsplit[Single long barcode implies circular structure.]
+
+---
+
+# Fiber bundle structure
+
+Now sample 50% densest points. How does the structure change?
+--
+
+* Using PCA, associate an angle to each data point.
+
+???
+
+If there is plenty of time, explain PCA a bit.
+--
+
+* Parametrizes the data set by a circle (`\(\mathbb{R}P^1\)`).
+--
+
+* Compute persistence of the points at each angle.
+
+.fiftyfiftyleft[<img src="angle6k300p50.png" width=90% height=90% />]
+
+.fiftyfiftyleft[<img src="angle3k300c50_diagram1.png" width=90% height=90% />]
+
+--
+
+* Clearly circles – do they glue together?
+
+
+---
+
+# Zig-Zag Persistence
+
+* Build zig-zag filtration:
+$$
+X_0 \hookrightarrow X_0 \cup X_1 \hookleftarrow X_1\hookrightarrow \cdots \hookleftarrow X_n
+$$
+where `\(X_i\)` is the complex constructed from the `\(i\)`-th angle range at scale parameter `\(1\)`. (Used 12 angles.)
+--
+
+* Compute the zig-zag homology using Dionysus (tricky!).
+--
+
+.center[<img src="zig_zag.png" width=60% height=60% />]
+
+---
+
+# Outstanding question
+
+.center[<img src="zig_zag.png" width=60% height=60% />]
+
+This is a fiber bundle over `\(\mathbb{S}^1\)` with `\(\mathbb{S}^1\)` fibers.
+Which one is it?
+--
+
+(We hope to have an answer soon!)
+
+---
+
+class: center, titlepage
+count: false
+
+# Thank you!
+--
+
+### Questions?
+
+---
+
+# References:
+* Bauer, Ulrich: Ripser: A lean C++ code for the computation of Vietoris–Rips persistence barcodes. Software available at https://github.com/Ripser/ripser (2017)
+* Carlsson, G, Ishkhanov, T, De Silva, V, Zomorodian, A: On the local behavior of spaces of natural images. International journal of computer vision 76(1), 1–12 (2008)
+* Morozov, Dmitri: Dionysus. http://www.mrzv.org/software/dionysus2/
+* Roosendaal, T.(Producer).: Sintel. Blender Foundation, Durian Open Movie Project, http://www.sintel.org/ (2010)
+
+
