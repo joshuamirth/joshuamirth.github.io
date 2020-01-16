@@ -40,6 +40,9 @@
     .titlepage a {
         color: #C8C372
         }
+    .titlepage li {
+        color: #FFFFFF
+        }
     .figuresplit {
         width: 35%;
         float: left;
@@ -47,6 +50,15 @@
     .textsplit {
         width: 60%;
         float: right;
+        padding-top: 1em;
+      }
+    .figuresplitR {
+        width: 35%;
+        float: right;
+      }
+    .textsplitR {
+        width: 60%;
+        float: left;
         padding-top: 1em;
       }
     .fiftyfiftyright {
@@ -157,11 +169,13 @@ Reinterpret simplices as discrete _probability measures_ on `\(X\)`.
 `$$
 x = \sum_{i=0}^{k} \lambda_{i} x_{i}.
 $$`
+where `\(\sum \lambda_{i} = 1 \)`.
 
-* Barycentric coordinates can be interpreted as probability measures:
+* Points can therefore be interpreted as probability measures:
 `$$
-\displaystyle \sum_{i=0}^{k} \lambda_{i} x_{i} \iff \sum_{i=0}^{k} \lambda_{i} \delta[x_{i}] .
+\displaystyle \sum_{i=0}^{k} \lambda_{i} x_{i} \iff \sum_{i=0}^{k} \lambda_{i} \delta[x_{i}]
 $$`
+where `\(\delta[x_{i}]\)` is the Dirac measure at `\(x_{i}\)`.
 
 * The Vietoris–Rips metric thickening, `\(\mathcal{VR}(X;r)\)`, consists of measures corresponding to simplices in `\(\mathrm{VR}(X;r)\)`.
 
@@ -169,70 +183,77 @@ $$`
 
 # The Wasserstein Distance
 
-The space of probability measures `\(\mathcal{P}(X)\)` can be metrized with the Wasserstein distance.
+.figuresplit[<img src="wasserstein_eg.png" width=90% height=90% />]
+
+.textsplit[`\(\mathcal{VR}(X;r)\)` lives in the space `\(\mathcal{P}(X)\)` of all probability measures on `\(X\)`.
+This space can be given a topology by the Wasserstein distance:
 
 `$$
 \displaystyle W_2(\mu,\nu)^2 = \inf_{\gamma} \int_{X \times X} d^2(x,y) d\gamma
 $$`
-
-where the infimum is taken over all measures `\(\gamma\)` whose marginals are `\(\mu\)` and `\(\nu\)`.
-
-With this metric, `\(W_2(\delta[x_0],\delta[x_1]) = d(x_0,x_1)\)`, so the inclusion `\(\iota \colon X \to \mathcal{VR}(X;r) \)` is continuous.
+where the infimum is taken over all measures `\(\gamma\)` whose marginals are `\(\mu\)` and `\(\nu\)`. ]
 
 --
 
-**Question:** what is the homotopy type of `\(\mathcal{VR}(X;r)\)`, and how does it evolve as `\(r\)` increases?
+.textsplit[With this metric, `\(W_2(\delta[x_0],\delta[x_1]) = d(x_0,x_1)\)`, so the inclusion `\(\iota \colon X \to \mathcal{VR}(X;r) \)` is continuous.
+
+**Question:** what is the homotopy type of `\(\mathcal{VR}(X;r)\)`, and how does it evolve as `\(r\)` increases? ]
 
 ---
 
-# Known Results
+# Hausmann-Style Theorems 
 
-**Theorem:** [Hausmann] For a Riemannian manifold `\(M\)`, and sufficiently small `\(r \gt 0\)`, there is a homotopy equivalence `\(\mathrm{VR}(M;r) \simeq M\)`.
+**Theorem:** [Hausmann] For a Riemannian manifold `\(M\)`, and sufficiently small `\(r \gt 0\)`, there is a homotopy equivalence between the Vietoris–Rips simplicial complex and the manifold, `\(\mathrm{VR}(M;r) \simeq M\)`.
 
 **Theorem:** For a Riemannian manifold `\(M\)` [Adamaszek, Adams, Frick] or a smooth manifold `\(M \subseteq \mathbb{R}^n\)` with the Euclidean distance [Adams, M.] and small `\(r\)` there is a homotopy equivalence `\(\mathcal{VR}(M;r) \simeq M\)`.
 
---
+<!--
 
 There are many proofs of (some form of) these theorems!
 
 * For spheres: [Adamaszek, Adams] [Zaremsky]
 * For Riemannian manifolds [Hausmann] [Latschev] [Adamaszek, Adams, Frick]
 * For Euclidean submanifolds [Niyogi, Smale, Weinberger] [Adams, M.]
+-->
 
----
+--
 
-_Proof Sketch:_ (For `\(M = \mathbb{S}^1\)`) Let `\(\iota\)` be the canonical inclusion of `\(\mathbb{S}\)` into `\(\mathcal{VR}(\mathbb{S};r)\)`. If `\(r\)` is sufficiently small, the Fréchet mean
+.textsplitR[_Proof Sketch:_ Let `\(\iota\)` be the canonical inclusion of `\(M\)` into `\(\mathcal{VR}(M;r)\)`. If `\(r\)` is sufficiently small, the Fréchet mean
 $$
 F(\mu) := \mathrm{argmin}_{p \in M} \int_M d^2(x,p) d\mu(x)
 $$
-is well-defined and continuous on `\(M = \mathbb{S}^1\)`.
-Then `\(F \circ \iota = \mathrm{id}\)` and `\(\iota \circ F \simeq \mathrm{id}\)` by the homotopy shown below:
+is well-defined and continuous as a function `\(\mathcal{P}(M) \to M\)`.
+Then `\(F \circ \iota = \mathrm{id}\)` and `\(\iota \circ F \simeq \mathrm{id}\)` by the homotopy shown at right:]
 
-.center[<img src="homotopy2.gif" width=40% height=40% />
+.figuresplitR[<img src="homotopy2.gif" width=80% height=80% />
 
-Path between `\(\mu\)` (in gold) and its Fréchet mean (in black).]
-
----
-
-# Corollaries:
-
-**Corollary 1:** The `\(k\)`-skeleton of `\(\mathcal{VR}(\mathbb{S}^1;r)\)` is homotopy equivalent to `\(\mathbb{S}^1\)` for sufficiently small `\(r\)`.
-
-**Corollary 2:** The set of all measures with support bounded in diameter by `\(r\)` is homotopy equivalent to `\(\mathbb{S}^1\)` for sufficiently small `\(r\)`.
-
-(These require the preceding proof.)
+.source[Path between `\(\mu\)` (in gold) and its Fréchet mean (in black).]]
 
 ---
 
-For larger `\(r\)`, `\(\mathcal{VR}(M;r)\)` is not homotopy equivalent to `\(M\)`.
+## Corollaries:
 
-.fiftyfiftyleft[<img src="r_small_enough.png" width=90% height=90% />
+**Corollary 1:** The `\(k\)`-skeleton of `\(\mathcal{VR}(M;r)\)` is homotopy equivalent to `\(M\)` for sufficiently small `\(r\)`.
+
+**Corollary 2:** The set of all measures with support bounded in diameter by `\(r\)` is homotopy equivalent to `\(M\)` for sufficiently small `\(r\)`.
+
+.center[(These require the preceding proof.)]
+
+--
+
+For larger `\(r\)`, neither `\(\mathrm{VR}(M;r)\)` nor `\(\mathcal{VR}(M;r)\)` is homotopy equivalent to `\(M\)`!
+
+--
+
+**Example:** [Adamaszek, Adams, Frick] For `\(M = \mathbb{S}^1\)` and `\(r = 2\pi/3 \)`, `\(\mathrm{VR}(M;r) \simeq \mathcal{VR}(M;r)   \simeq \mathbb{S}^3\)`.
+
+.fiftyfiftyleft[<img src="r_small_enough.png" width=30% height=30% />
 `\(\mathcal{VR}(\mathbb{S}^1;r)\)` for `\(r\)` sufficiently small.]
 
-.fiftyfiftyright[<img src="r_too_big.png" width=90% height=90% />
+.fiftyfiftyright[<img src="r_critical.png" width=30% height=30% />
 `\(\mathcal{VR}(\mathbb{S}^1;r)\)` for `\(r\)` too big.]
 
-The critical scale is `\(r = \frac{2\pi}{3}\)`, at which `\(\mathcal{VR}(\mathbb{S}^1;\frac{2\pi}{3}) \simeq \mathbb{S}^3 \)`. There exist measures at this scale which do not have a unique Fréchet mean.
+At `\(r = 2\pi/3 \)`, there are measures in `\(\mathcal{VR}(M;r)\)` which do not have a unique Fréchet mean.
 
 ---
 
@@ -243,17 +264,23 @@ count: false
 
 ---
 
-# Recall: Morse Lemmas
+## Recall: Morse Lemmas
 
 Let `\(f\)` be a Morse function on a manifold `\(M\)`.
 
-**Lemma A:** If `\([a,b]\)` contains no critical values of `\(f\)`, then the sublevel sets `\(f^{-1}(-\infty,a]\)` and `\(f^{-1}(-\infty,b]\)` are homotopy equivalent.
+**Lemma A:** If `\([a,b]\)` contains no critical values of `\(f\)` and `\(f^{-1}([a,b])\)` is compact, then the sublevel sets `\(f^{-1}(-\infty,a]\)` and `\(f^{-1}(-\infty,b]\)` are homotopy equivalent.
 
 _Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` along the gradient of `\(f\)`.
 
 **Lemma B:** If `\([a,b]\)` contains exactly one critical value, `\(c\)`, of `\(f\)`, then `\(M^b \simeq M^a \cup D^k\)` where `\(k\)` is the index of `\(f^{-1}(c)\)`.
 
+--
+
+.center[<img src="milnor_torus.gif" width=30% height=30% />]
+
 ---
+
+## Morse Lemmas in Wasserstein Space
 
 The Fréchet variance of a measure `\(\mu\)` with mean `\(\bar{\mu} \in M\)` is
 $$
@@ -263,7 +290,7 @@ Intuitively measures the "spread" of the support of the measure.
 
 --
 
-**Conjecture:** The homotopy in the preceding proof is a flow along `\(-\nabla V\)`. Moreover, Fréchet variance serves as a type of Morse function on `\(\mathcal{VR}(X;r)\)`, and flowing along `\(-\nabla V\)` gives a version of Morse Lemma A.
+**Big Picture:** The homotopy in the preceding proof is a flow along `\(-\nabla V\)`. Moreover, Fréchet variance serves as a type of Morse function on `\(\mathcal{VR}(X;r)\)`, and flowing along `\(-\nabla V\)` gives a version of Morse Lemma A.
 
 --
 
@@ -290,18 +317,15 @@ Long term goal: understand the homotopy type of `\(\mathcal{P}(M)\)` and "nice" 
 
 ---
 
-class: middle, center, titlepage
+class: middle, left, titlepage
 count: false
 
 # Thank you!
 
-### Questions?
+* Slides available at https://www.math.colostate.edu/~mirth/talks.html
+* If you want to talk more, grab coffee, or offer me a job, my email is <a href="mirth@math.colostate.edu">mirth@math.colostate.edu</a>
 
-### (Slides available at https://www.math.colostate.edu/~mirth/talks.html )
-
----
-
-# References:
+### References:
 
 .source[
 * Michal Adamaszek and Henry Adams. The Vietoris–Rips complexes of a circle. _Pacific Journal of Mathematics, 290(1):1-40, 2018.
@@ -339,301 +363,3 @@ count: false
     </script>
  </body>
 </html>
-
-
----
-
-
-Old Stuff
-
-<!-- Keep as example of picture for now:
-.center[<img src="http://sintel.is.tue.mpg.de/assets/canonical/0/4.gif" alt="Sintel image" height=80% width=80% /> -->
-
-<!-- Keep as example of image source
-.source[(Source: http://sintel.is.tue.mpg.de/)]] -->
-
----
-
-# Optical flow
-
-.figuresplit[The problem is ill-posed!
-.center[<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Barber-pole-01.gif"/>
-
-.source[(Source: Wikipedia)]]]
---
-
-.textsplit[
-* Actual motion could be either rotation about vertical axis, <i>or</i> sliding vertically!]
---
-.textsplit[
-* Algorithms have to make assumptions about which is more likely.]
---
-.textsplit[
-* Encoding optical flow data as points in `\(\mathbb{R}^n\)` gives a <i>space</i> of optical flow data.]
---
-.textsplit[
-* The topological/geometric structure of (dense subsets of) this space may reveal plausible assumptions.
-]
-
-<!-- barber's pole animation 
-    <img src="http://i.imgur.com/2jNOp.gif" width=60% height=60% />
-.center[<div style="width:600px;height:320px;overflow:hidden">
-</div>-->
-
-
----
-
-# The Dataset:
-
-* Optical flow data is hard to obtain. (No tool measures ground truth optical flow.)
-
-.center[<iframe width="560" height="315" src="https://www.youtube.com/embed/ZmiBI4tPk_o?start=12" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>]
---
-
-* Sintel – Open source animated film made with Blender.
---
-
-* Can compute <i>exact</i> optical flow!
-
-???
-Mention old datasets.
-
----
-
-# Processing
-
-* Randomly sample 400,000 size `\(3\times 3\)` patches from the 1041 fields in the Sintel data set.
---
-
-* Patches contain both vertical and horizontal components. Rearrange into a length-18 vector.
---
-
-* Compute "contrast norm", normalize, and select only high-contrast patches.
---
-
-* Randomly downsample to 50,000 data points.
---
-
-* Pull out a dense core subset using `\(k\)`-th nearest neighbor estimator.
-
-.center[<img src="patches_k500p30.png" width=50% height=50%/>]
-
----
-
-class: middle, center, titlepage
-count: false
-
-# Interlude:
-### Some algebraic topology
-
----
-
-# Fiber bundles:
-
-A <i>Fiber bundle</i> consists of spaces `\(F \to E \xrightarrow{\pi} B \)`, the "fiber", "total space", and "base space", respectively, where `\(\pi^{-1}(B)\)` locally resembles `\(B \times F\)`.
-
-.figuresplit[
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Torus_cycles.svg/1200px-Torus_cycles.svg.png" alt="Torus cycles.svg" width=90% height=90%/>
-.center[.source[(Source: wikipedia)]]
-]
-
-.textsplit[
-The torus is a fiber bundle over `\(\mathbb{S}^1\)`:
-$$
-\mathbb{S}^1 \to T \xrightarrow{\pi} \mathbb{S}^1
-$$
-The base space is in pink.
-An example fiber is in red.]
---
-
-.textsplit[
-This is not the only possibility!
-]
-
----
-
-# Fiber bundles:
-
-A <i>Fiber bundle</i> consists of spaces `\(F \to E \xrightarrow{\pi} B \)`, the "fiber", "total space", and "base space", respectively, where `\(\pi^{-1}(B)\)` locally resembles `\(B \times F\)`.
-
-.figuresplit[
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Klein_bottle.svg/1200px-Klein_bottle.svg.png" width="70%" height="70%" align=center/>
-.center[.source[(Source: Wikipedia)]]
-]
-
-.textsplit[
-The Klein bottle is also a fiber bundle over `\(\mathbb{S}^1\)`, with fibers `\(\mathbb{S}^1\)`!
-$$
-\mathbb{S}^1 \to K \xrightarrow{\pi} \mathbb{S}^1
-$$
-
-]
-
----
-
-# Topological Data Analysis
-
-Turn a data set into a topological space (simplicial complex) by "thickening" it:
-
-.center[<img src="complex.png" width=70% height=70% />]
-
-<b>Homology:</b> Turn a topological space `\(X \)` into a vector space `\(H_1(X)\)` such that dimension is number of "loops" in `\(X\)`.
-Calculation reduces to linear algebra.
---
-
-* Depends on amount of thickening! (Scale parameter.)
-
----
-
-## Persistent Homology:
-
-Increasing sequence of spaces `\(\{ X_i \hookrightarrow X_{i+1}\}\)` turns into sequence of vector spaces and linear maps `\(H_1(X_i) \to H_1(X_{i+1})\)` that track how loops evolve.
-Also reduces to linear algebra!
-
-.center[<video width="480" height="360" controls loop autoplay>
-    <source src="growingFiltration2.mov" type="video/mp4">
-</video>
-
-.source[(Credit: Henry Adams)]]
-
----
-
-count: false
-
-## Persistent Homology:
-
-Increasing sequence of spaces `\(\{ X_i \hookrightarrow X_{i+1}\}\)` turns into sequence of vector spaces and linear maps `\(H_1(X_i) \to H_1(X_{i+1})\)` that track how loops evolve.
-Also reduces to linear algebra!
-
-Display the result as either <b>barcodes</b> or persistence diagrams.
-
-.center[<img src="lazyWitness.png" width=100% height=100% />]
-
----
-
-count: false
-
-## Persistent Homology:
-
-Increasing sequence of spaces `\(\{ X_i \hookrightarrow X_{i+1}\}\)` turns into sequence of vector spaces and linear maps `\(H_1(X_i) \to H_1(X_{i+1})\)` that track how loops evolve.
-Also reduces to linear algebra!
-
-Display the result as either barcodes or <b>persistence diagrams</b>.
-
-.center[<img src="angle3k300c50_diagram1.png" width=60% height=60% />]
-
-
----
-
-## Zig-Zag Persistence:
-
-Bi-directional sequence of spaces that turns into bi-directional sequence of vector spaces tracking how loops evolve.
-Reduces to harder linear algebra (quiver representations).
-
-.center[<img src="zigzag_illustration.png" width=70% height=70% />]
-
-Corresponds to
-$$
-\mathbb{R} \hookrightarrow \mathbb{R}^3 \hookleftarrow \mathbb{R}\hookrightarrow \mathbb{R}^3 \hookleftarrow \mathbb{R}
-$$
---
-
-* This is the version we will need!
-
-???
-
-Draw a zig-zag sequence on the board?
-
----
-
-class: middle, center, titlepage
-count: false
-
-# Results
-
----
-
-# Horizontal flow circle
-
-Start with the densest 30% of points and compute <b>persistent homology</b>.
-
-<img src="lazyWitness.png" width=100% height=100% />
-.figuresplit[.center[<img src="patches_k500p30.png" width=100% height=100%/>]]
-
-.textsplit[Single long barcode implies circular structure.]
-
----
-
-# Fiber bundle structure
-
-Now sample 50% densest points. How does the structure change?
---
-
-* Using PCA, associate an angle to each data point.
-
-???
-
-If there is plenty of time, explain PCA a bit.
---
-
-* Parametrizes the data set by a circle (`\(\mathbb{R}P^1\)`).
---
-
-* Compute persistence of the points at each angle.
-
-.fiftyfiftyleft[<img src="angle6k300p50.png" width=90% height=90% />]
-
-.fiftyfiftyleft[<img src="angle3k300c50_diagram1.png" width=90% height=90% />]
-
---
-
-* Clearly circles – do they glue together?
-
-
----
-
-# Zig-Zag Persistence
-
-* Build zig-zag filtration:
-$$
-X_0 \hookrightarrow X_0 \cup X_1 \hookleftarrow X_1\hookrightarrow \cdots \hookleftarrow X_n
-$$
-where `\(X_i\)` is the complex constructed from the `\(i\)`-th angle range at scale parameter `\(1\)`. (Used 12 angles.)
---
-
-* Compute the zig-zag homology using Dionysus (tricky!).
---
-
-.center[<img src="zig_zag.png" width=60% height=60% />]
-
----
-
-# Outstanding question
-
-.center[<img src="zig_zag.png" width=60% height=60% />]
-
-This is a fiber bundle over `\(\mathbb{S}^1\)` with `\(\mathbb{S}^1\)` fibers.
-Which one is it?
---
-
-(We hope to have an answer soon!)
-
----
-
-class: center, titlepage
-count: false
-
-# Thank you!
---
-
-### Questions?
-
----
-
-# References:
-* Bauer, Ulrich: Ripser: A lean C++ code for the computation of Vietoris–Rips persistence barcodes. Software available at https://github.com/Ripser/ripser (2017)
-* Carlsson, G, Ishkhanov, T, De Silva, V, Zomorodian, A: On the local behavior of spaces of natural images. International journal of computer vision 76(1), 1–12 (2008)
-* Morozov, Dmitri: Dionysus. http://www.mrzv.org/software/dionysus2/
-* Roosendaal, T.(Producer).: Sintel. Blender Foundation, Durian Open Movie Project, http://www.sintel.org/ (2010)
-
-
