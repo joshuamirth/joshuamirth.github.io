@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Morse Theory for Metric Thickenings – Joshua Mirth</title>
+    <title>Morse Theory for Wasserstein Spaces – Joshua Mirth</title>
      <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -24,6 +24,9 @@
     .source {
         font-size: 0.7em;
         color: #888888
+        }
+    .refs {
+        font-size: 0.7em;
         }
     .titlepage {
         background: #1E4D2B
@@ -85,7 +88,7 @@
 class: center, middle, titlepage
 count: false
 
-# Morse theory for Metric Thickenings
+# Morse theory for Wasserstein Spaces
 
 ## JMM 2020
 
@@ -260,6 +263,7 @@ At `\(r = 2\pi/3 \)`, there are measures in `\(\mathcal{VR}(M;r)\)` which do not
 # Questions:
 
 1. What is the homotopy type of `\(\mathcal{VR}(\mathbb{S}^1;r)\)` when `\(r \gt \frac{2\pi}{3}\)`?
+
 2. More generally, how does the homotopy type of `\(\mathcal{VR}(M;r)\)` evolve as `\(r\)` increases when `\(M\)` is a manifold?
 
 --
@@ -296,11 +300,11 @@ _Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` alo
 
 ## Morse Lemmas in Wasserstein Space
 
-**Energy Function:** The Fréchet variance of a measure `\(\mu\)` with Fréchet mean `\(\bar{\mu} \in M\)` is
+**Energy Function:** The Fréchet variance of a measure `\(\mu\)` with Fréchet mean  is
 $$
-V(\mu) := \int_M d^2(x,\bar{\mu}) d\mu(x) .
+V(\mu) := \int_{M \times M} d^2(x,y) d(\mu \times \mu)(x,y).
 $$
-Intuitively measures the "spread" of the support of the measure.
+If the (geometric) Fréchet mean `\(\bar{\mu}\)` exists, then `\(V(\mu) = \int_M d^2(x,\bar{\mu}) d\mu(x) \)`.
 
 --
 
@@ -320,12 +324,20 @@ Intuitively measures the "spread" of the support of the measure.
 There is a differentiable structure on `\(\mathcal{P}(M)\)`, the space of probability measures on `\(M\)` with the `\(W_2\)` metric:
 
 * The tangent space at `\(\mu \in \mathcal{P}(M)\)` consists of vector fields on the support of `\(\mu\)`.
+
 * If `\(\mu\)` has finite support (e.g. `\(\mu \in \mathcal{VR}(M;r) \)`) flowing along a vector field consists of solving a (time-dependent) system of ODEs on `\(M\)`.
-* For `\(-\nabla V\)`, the ODE is simply
+
+* For `\(-\nabla V\)`, the ODE at any point in `\(\mathrm{supp}(\mu)\)` is simply
 $$
 \dot{x}(t) = \exp^{-1}_x(\bar{\mu})
 $$
-and the solutions are the curves pictured previously.
+as long as a unique `\(\bar{\mu}\)` exists. The solutions are the curves pictured previously.
+
+--
+
+* If `\(\bar{\mu}\)` is not a unique point in `\(M\)`, then the ODEs are tricky! Morally `\(\mu\)` lives on a "stable manifold" of a "saddle point".
+* **Future Work:** Understand these systems, at least on example manifolds where these equations are tractable (spheres, Grassmannians, Lie groups?). 
+
 
 <!--
 * There is a tangent space, and for "nice" real-valued functions `\(F\)` on `\(\mathcal{P}(M)\)` there is a gradient, defined by
@@ -350,12 +362,11 @@ count: false
 
 # Thank you!
 
-* Slides available at https://www.math.colostate.edu/~mirth/talks.html
+* Slides available at https://www.math.colostate.edu/~mirth/talks.html or email me at <a href="mirth@math.colostate.edu">mirth@math.colostate.edu</a>.
 
 ### References:
 
-.source[
-* Michal Adamaszek and Henry Adams. The Vietoris–Rips complexes of a circle. _Pacific Journal of Mathematics, 290(1):1-40, 2018.
+.refs[* Michal Adamaszek and Henry Adams. The Vietoris–Rips complexes of a circle. _Pacific Journal of Mathematics, 290(1):1-40, 2018.
 * Michal Adamaszek, Henry Adams, Florian and Frick. Metric reconstruction via optimal transport. _SIAM Journal on Applied Algebra and Geometry_, 2(4):597-619, 2018.
 * Henry Adams and Joshua Mirth. Metric thickenings of Euclidean submanifolds. _Topology and its Applications_, 254:69-84, 2019.
 * Jean-Claude Hausmann. On the Vietoris–Rips complexes and a cohomology theory for metric spaces. _Annals of Mathematics Studies, 138:175-188, 1995.
