@@ -257,6 +257,20 @@ At `\(r = 2\pi/3 \)`, there are measures in `\(\mathcal{VR}(M;r)\)` which do not
 
 ---
 
+# Questions:
+
+1. What is the homotopy type of `\(\mathcal{VR}(\mathbb{S}^1;r)\)` when `\(r \gt \frac{2\pi}{3}\)`?
+2. More generally, how does the homotopy type of `\(\mathcal{VR}(M;r)\)` evolve as `\(r\)` increases when `\(M\)` is a manifold?
+
+--
+
+### Motivation:
+
+.center[<img src="circle_R4_barcodes.png" width=90% height=90% />
+Persistence barcodes (computed in Ripser) for data from a circle.]
+
+---
+
 class: middle, center, titlepage
 count: false
 
@@ -266,13 +280,13 @@ count: false
 
 ## Recall: Morse Lemmas
 
-Let `\(f\)` be a Morse function on a manifold `\(M\)`.
+Let `\(f\)` be a smooth, real-valued function on a manifold `\(M\)`.
 
 **Lemma A:** If `\([a,b]\)` contains no critical values of `\(f\)` and `\(f^{-1}([a,b])\)` is compact, then the sublevel sets `\(f^{-1}(-\infty,a]\)` and `\(f^{-1}(-\infty,b]\)` are homotopy equivalent.
 
 _Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` along the gradient of `\(f\)`.
 
-**Lemma B:** If `\([a,b]\)` contains exactly one critical value, `\(c\)`, of `\(f\)`, then `\(M^b \simeq M^a \cup D^k\)` where `\(k\)` is the index of `\(f^{-1}(c)\)`.
+**Lemma B:** If `\(f\)` is a Morse function and `\([a,b]\)` contains exactly one critical value, `\(c\)`, of `\(f\)`, then `\(M^b \simeq M^a \cup D^k\)` where `\(k\)` is the index of `\(f^{-1}(c)\)`.
 
 --
 
@@ -282,7 +296,7 @@ _Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` alo
 
 ## Morse Lemmas in Wasserstein Space
 
-The Fréchet variance of a measure `\(\mu\)` with mean `\(\bar{\mu} \in M\)` is
+**Energy Function:** The Fréchet variance of a measure `\(\mu\)` with Fréchet mean `\(\bar{\mu} \in M\)` is
 $$
 V(\mu) := \int_M d^2(x,\bar{\mu}) d\mu(x) .
 $$
@@ -290,30 +304,44 @@ Intuitively measures the "spread" of the support of the measure.
 
 --
 
-**Big Picture:** The homotopy in the preceding proof is a flow along `\(-\nabla V\)`. Moreover, Fréchet variance serves as a type of Morse function on `\(\mathcal{VR}(X;r)\)`, and flowing along `\(-\nabla V\)` gives a version of Morse Lemma A.
+**Big Picture:** The homotopy in the preceding proof is a flow along `\(-\nabla V\)`. Moreover, Fréchet variance serves as a type of Morse function on `\(\mathcal{VR}(M;r)\)`, and flowing along the vector field `\(-\nabla V\)` gives a version of Morse Lemma A.
+
+.center[<img src="homotopy2.gif" width=20% height=20% />]
 
 --
 
-... Does `\(\mathcal{VR}(X;r)\)` have enough structure for "gradient" and "flow" to be meaningful?
+... What do "gradient," "flow," and "vector field" actually mean in `\(\mathcal{VR}(M;r)\)` (or `\(\mathcal{P}(M)\)`)?
 
 
 ---
 
-There is a differentiable structure on `\(\mathcal{P}(X)\)`, the space of probability measures on `\(M\)` with the `\(W_2\)` metric:
+## "Weak" Riemannian Structure of `\(\mathcal{P}(M)\)` 
 
+There is a differentiable structure on `\(\mathcal{P}(M)\)`, the space of probability measures on `\(M\)` with the `\(W_2\)` metric:
+
+* The tangent space at `\(\mu \in \mathcal{P}(M)\)` consists of vector fields on the support of `\(\mu\)`.
+* If `\(\mu\)` has finite support (e.g. `\(\mu \in \mathcal{VR}(M;r) \)`) flowing along a vector field consists of solving a (time-dependent) system of ODEs on `\(M\)`.
+* For `\(-\nabla V\)`, the ODE is simply
+$$
+\dot{x}(t) = \exp^{-1}_x(\bar{\mu})
+$$
+and the solutions are the curves pictured previously.
+
+<!--
 * There is a tangent space, and for "nice" real-valued functions `\(F\)` on `\(\mathcal{P}(M)\)` there is a gradient, defined by
 `$$
 \lim_{\nu \to \mu} \frac{F(\nu) - F(\mu) - \int_{M \times M} \langle \nabla F , y - x \rangle d\gamma(x,y)}{W_2(\mu,\nu)} = 0 .
 $$`
 * The continuity equation
 $$
-\frac{\partial \mu}{\partial t} + \mathrm{div}_\mu(v_t)
+\frac{\partial \mu}{\partial t} + \mathrm{div}_\mu(v_t) = 0
 $$
 defines the flow of a vector field `\(v_t\)`.
 * **Theorem:** [Ambrosio, Gigli, Savaré] Every reasonably smooth curve in `\(\mathcal{P}(M)\)` has an associated velocity vector field.
 * Differential forms and De Rahm cohomology are defined [Gangbo, Kim, Pacini].
 
 Long term goal: understand the homotopy type of `\(\mathcal{P}(M)\)` and "nice" subspaces using Morse theory.
+-->
 
 ---
 
@@ -323,7 +351,6 @@ count: false
 # Thank you!
 
 * Slides available at https://www.math.colostate.edu/~mirth/talks.html
-* If you want to talk more, grab coffee, or offer me a job, my email is <a href="mirth@math.colostate.edu">mirth@math.colostate.edu</a>
 
 ### References:
 
