@@ -106,19 +106,19 @@ count: false
 # Outline
 
 .fiftyfiftyleft[
+**Main Goal:** Understand the topological structure of Vietoris–Rips metric thickenings, using:
+* Metric geometry,
+* Optimal transport theory, and
+* Category theory.
+]
+
+.fiftyfiftyright[
 1. Background
     1. Vietoris–Rips Complexes
     2. Wasserstein Space
 2. Homotopy Types via Geodesic Flows
 3. Toward a Morse Theory
 4. Categorical Perspective
-]
-
-.fiftyfiftyright[
-**Main Goal:** Understand the topological structure of Vietoris–Rips metric thickenings, using:
-* Metric geometry,
-* Optimal transport theory, and
-* Category theory.
 ]
 
 ---
@@ -128,7 +128,7 @@ count: false
 
 .defn[**Definition:**] An **abstract simplicial complex** is a set `\(S\)` and a collection `\(K\)` of finite nonempty subsets `\(\sigma\)` of `\(S\)` called simplices. These must satisfy:
 * All singleton sets `\(\{s\}\)` are contained in `\(K\)`, and 
-* If `\(\sigma) \in K\)` and `\(\tau \subseteq \sigma\)`, then `\(\tau \in K\)`.
+* If `\(\sigma \in K\)` and `\(\tau \subseteq \sigma\)`, then `\(\tau \in K\)`.
 
 .center[<img src="background_rips.png" width=20% height=20%>] 
 
@@ -150,8 +150,8 @@ A space `\(X \subset \mathbb{R}^2\)` and its Vietoris–Rips filtration at diffe
 # History
 
 * Introduced by Leopold Vietoris in the 1930s. By taking the limit `\(r \to 0\)` this assigns a "canonical" simplicial complex to any metric space.
-* Rediscovered in the 1980s in the context of geometric group theory by Rips and Gromov. At large enough scales `\(\mathrm{VR}(X;r)\)` is always contractible—Gromov and Rips interested in determining the smallest `\(r\)` where this happens.
-* Scales between `\(0\)` and `\(\infty\)` first studied by Hausmann (1995) who showed that `\(\mathrm{VR}(M;r) \simeq M\)` for small `\(r\)` and `\(M\)` a smooth manifold.
+* Rediscovered in the 1980s in the context of geometric group theory by Rips and Gromov. At large enough scales `\(\mathrm{VR}(X;r)\)` is always contractible—Gromov and Rips were interested in determining the smallest `\(r\)` where this happens.
+* Scales between `\(0\)` and `\(\infty\)` first studied by [Hausmann] who showed that `\(\mathrm{VR}(M;r) \simeq M\)` for small `\(r\)` and `\(M\)` a smooth manifold.
 * Renewed interest because of _persistent homology_. The Vietoris–Rips complex is a computationally tractable filtration of a (finite) metric space.
 * [Adamaszek, Adams] determined the exact homotopy type of `\(\mathrm{VR}(S^1;r)\)` for all `\(r\)`, in particular, all odd-dimensional spheres appear at some `\(r\)`.
 
@@ -238,7 +238,7 @@ count: false
 
 The proof is difficult because there is no natural continuous map `\(M \to \mathrm{VR}(M;r)\)`.
 
-.defn[**Theorem:**] For a Riemannian manifold `\(M\)` [Adamaszek, Adams, Frick] and sufficiently small `\(r\)` there is a homotopy equivalence `\(\mathcal{VR}(M;r) \simeq M\)`.
+.defn[**Theorem:**] [Adamaszek, Adams, Frick] For a Riemannian manifold `\(M\)` and sufficiently small `\(r\)` there is a homotopy equivalence `\(\mathcal{VR}(M;r) \simeq M\)`.
 
 _Proof Sketch:_ Map from `\(M \to \mathcal{VR}(M;r)\)` via `\(\delta\)` and from `\(\mathcal{VR}(M;r) \to M\)` via the "Karcher mean."
 Construct a homotopy using convex linear combinations.
@@ -254,16 +254,16 @@ Construct a homotopy using convex linear combinations.
 
 For a measure `\(\mu\)` on `\(\mathbb{R}^d\)`, the mean `\(\bar{\mu}\)` of `\(\mu\)` is the unique minimum of
 `$$
-P_{\mu}(\vec{x}) = \int_{\mathbb{R}^d} \|\vec{x} - \vec{y}\|^2 \mathrm{d}\mu(\vec{y})
+P_{\mu}(\vec{x}) = \int_{\mathbb{R}^d} \|\vec{x} - \vec{y}\|^2 \, \mathrm{d}\mu(\vec{y})
 $$`
 
 _Define_ the "mean" or center of mass of `\(\mu\)` on a general metric space `\(X\)` to be any minimum of
 `$$
-P_{\mu}(x) = \int_{X} d^2(x,y) \mathrm{d}\mu(y) .
+P_{\mu}(x) = \int_{X} d^2(x,y) \, \mathrm{d}\mu(y) .
 $$`
 Existence of a minimum is guaranteed if `\(X\)` is _proper_. Uniqueness is much harder.
 
-Centers of mass on non-Euclidean spaces have been widely studied since [Karcher].
+Centers of mass on non-Euclidean spaces have been widely studied since [Karcher] in the 1970s.
 
 ---
 
@@ -273,9 +273,9 @@ Let `\(\delta \colon X \to \mathcal{VR}(X;r)\)` be the Dirac delta map and let `
 Let `\(\gamma_\mu(t)\)` be the geodesic in Wasserstein space connecting `\(\mu\)` to `\(\delta[\bar{\mu}]\)`.
 
 To show that `\(X\)` and `\(\mathcal{VR}(X;r)\)` are homotopy equivalent we need to show under some assumptions that
-1. That any `\(\mu \in \mathcal{VR}(X;r)\)` has a unique center of mass so `\(K\)` is well-defined,
-2. That `\(K\)` is continuous, and
-3. That the geodesics `\(\gamma_\mu(t)\)` remain in `\(\mathcal{VR}(X;r)\)`, i.e. the diameter of `\(\gamma_\mu(t)\)` does not increase.
+1. Any `\(\mu \in \mathcal{VR}(X;r)\)` has a unique center of mass so `\(K\)` is well-defined,
+2. `\(K\)` is continuous, and
+3. The geodesics `\(\gamma_\mu(t)\)` remain in `\(\mathcal{VR}(X;r)\)`, i.e. the diameter of `\(\gamma_\mu(t)\)` does not increase.
 
 .fiftyfiftyleft[
 By construction `\(K \circ \delta\)` is the identity on `\(X\)`.
@@ -305,25 +305,34 @@ Curvature is a local condition, but if it holds for all triangles in `\(X\)`, we
 
 ## Curvature and Means:
 
+.fiftyfiftyleft[
 * If `\(X\)` is global NPC then any measure `\(\mu\)` on `\(N\)` has a unique mean which varies continuously _and_ the diameter of `\(\gamma_\mu(t)\)` is decreasing.
-
 * If there is an `\(r > 0\)` such that all subsets of `\(X\)` with diameter less than `\(r\)` are both NPC and geodesically convex, then the same holds.
+* If `\(X\)` is non-negatively curved, then by theorems of [Afsari] and [Karcher] there is a small enough `\(r\)` for these conditions to hold.
+]
 
-* If `\(X\)` is non-negatively curved, then by theorems of [Afsari, Karcher] there is a small enough `\(r\)` for these conditions to hold.
+.fiftyfiftyright[.center[
+<img src="results_sphere.png" width=40% height=40%>
+]
+]
 
+.left[
 Consequently, we get:
 
 .defn[**Theorem:**] If `\(X\)` is a geodesic space and `\(r\)` is sufficiently small depending on the curvature of `\(X\)`, then `\(\mathrm{VR}(X;r) \simeq X\)`.
-
-This is a slight refinement of the theorem of [Adamaszek, Adams, Frick] but uses the natural geodesic structure.
+]
 
 ---
 
 ## Novel Corollaries:
 
-.defn[**Corollary 1:**] The `\(k\)`-skeleton of `\(\mathcal{VR}(M;r)\)` is homotopy equivalent to `\(M\)` for sufficiently small `\(r\)`.
+This theorem is a slight refinement of the theorem of [Adamaszek, Adams, Frick] but uses the natural geodesic structure, giving some natural corollaries.
 
-.defn[**Corollary 2:**] The infinite Vietoris–Rips thickening, `\(\mathcal{VR}^\infty(X;r)\)`, consisting of _all_ measures with support bounded in diameter by `\(r\)` is homotopy equivalent to `\(M\)` for sufficiently small `\(r\)`.
+Under the assumptions required in the theorem:
+
+.defn[**Corollary 1:**] The `\(k\)`-skeleton of `\(\mathcal{VR}(X;r)\)` is homotopy equivalent to `\(X\)` for sufficiently small `\(r\)`.
+
+.defn[**Corollary 2:**] The infinite Vietoris–Rips thickening, `\(\mathcal{VR}^\infty(X;r)\)`, consisting of _all_ measures with support bounded in diameter by `\(r\)` is homotopy equivalent to `\(X\)` for sufficiently small `\(r\)`.
 
 Both follow because the cardinality of the support of a geodesic `\(\gamma_\mu(t)\)` can only decrease.
 
@@ -344,11 +353,11 @@ D(\mu) = \mathrm{diam}(\mathrm{supp}(\mu)) .
 $$`
 Then
 `$$
-\mathcal{VR}^{\infty}(X;r) = D^{-1}(-\infty,r) .
+\mathcal{VR}^{\infty}(X;r) = D^{-1}((-\infty,r]) .
 $$`
 Restricting the domain to the set of finitely-supported measures, `\(\mathcal{I}(X)\)`, the sublevel sets are the Vietoris–Rips thickening:
 `$$
-\mathcal{VR}(X;r) = D^{-1}(-\infty,r) .
+\mathcal{VR}(X;r) = D^{-1}((-\infty,r]) .
 $$`
 
 The natural way to study the topology of sublevel sets is through _Morse theory_.
@@ -361,11 +370,11 @@ The natural way to study the topology of sublevel sets is through _Morse theory_
 
 Let `\(f\)` be a smooth, real-valued function on a manifold `\(M\)`.
 
-.defn[**Lemma A:**] If `\([a,b]\)` contains no critical values of `\(f\)` and `\(f^{-1}([a,b])\)` is compact, then the sublevel sets `\(f^{-1}(-\infty,a]\)` and `\(f^{-1}(-\infty,b]\)` are homotopy equivalent.
+.defn[**Lemma A:**] If `\([a,b]\)` contains no critical values of `\(f\)` and `\(f^{-1}([a,b])\)` is compact, then the sublevel sets `\(f^{-1}((-\infty,a])\)` and `\(f^{-1}((-\infty,b])\)` are homotopy equivalent.
 
-_Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` along the gradient of `\(f\)`.
+_Proof Sketch:_ Flow from `\(f^{-1}((-\infty,b])\)` to `\(f^{-1}((-\infty,a])\)` along the gradient of `\(f\)`.
 
-.defn[**Lemma B:**] If `\(f\)` is a Morse function and `\([a,b]\)` contains exactly one critical value, `\(c\)`, of `\(f\)`, then `\(M^b \simeq M^a \cup D^k\)` where `\(k\)` is the index of `\(f^{-1}(c)\)`.
+.defn[**Lemma B:**] If `\(f\)` is a Morse function and `\([a,b]\)` contains exactly one critical value, `\(c\)`, of `\(f\)`, then `\(f^{-1}((-\infty,b]) \simeq f^{-1}((-\infty,a]) \cup D^k\)` where `\(k\)` is the index of the critical point corresponding to `\(c\)`.
 
 ---
 
@@ -373,7 +382,7 @@ _Proof Sketch:_ Flow from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` alo
 
 The differential structure on `\(\mathcal{P}(X)\)` is described in [Ambrosio, Gigli, Savaré] and [Ohta].
 
-.defn[**Definition:**] The **tangent cone**, `\(C_\mu\mathcal{P}(X)\)`, at `\(\mu \in \mathcal{P}(X)\)` is the product of the (closure of the) set of constant speed geodesics starting at `\(\mu\)` (up to equivalence) with `\([0,+\infty)\)`.
+.defn[**Definition:**] The **tangent cone**, `\(C_\mu\mathcal{P}(X)\)`, at `\(\mu \in \mathcal{P}(X)\)` is the product of the (closure of the) set of unit speed geodesics starting at `\(\mu\)` (up to equivalence) with `\([0,+\infty)\)`.
 
 .defn[**Definition:**] The **absolute gradient** of `\(f \colon \mathcal{P}(X) \to \mathbb{R}\)` is
 `$$
@@ -384,20 +393,20 @@ We can also take a "directional derivative" along a curve.
 
 .defn[**Lemma:**] If `\(f\)` is lower semi-continuous, `\(\lambda\)`-convex and its absolute gradient finite, then there is a unique geodesic `\(\gamma\)` in the tangent cone such that the directional derivative along `\(\gamma\)` is equal to the absolute gradient of `\(f\)`.
 
-We call this geodesic the gradient of `\(f\)`.
+We call the pair `\((\gamma,|\nabla f|(\mu))\)` of a geodesic and real number the **gradient** of `\(f\)` at `\(\mu\)`.
 
-.defn[**Theorem:**] [Ohta] There is a unique, continuous, complete gradient flow associated to any `\(\lambda\)`-convex function on `\(\mathcal{P}(X)\)`.
+.defn[**Theorem:**] [Ohta] There is a unique, continuous, complete gradient flow associated to any lower semi-continuous `\(\lambda\)`-convex function on `\(\mathcal{P}(X)\)`.
 
 ---
 
 # First Morse Lemma
 
 .defn[**Theorem**] Let `\(f \colon \mathcal{P}(X) \to \mathbb{R}\)` be lower semi-continuous and `\(\lambda\)`-convex, let `\(X\)` be a compact Alexandrov space with curvature bounded below, and suppose that `\([a,b]\)` contains no critical values of `\(f\)`.
-Then the sublevel sets `\(f^{-1}(-\infty,a]\)` and `\(f^{-1}(-\infty,b]\)` are homotopy equivalent.
+Then the sublevel sets `\(f^{-1}((-\infty,a])\)` and `\(f^{-1}((-\infty,b])\)` are homotopy equivalent.
 
 _Proof Sketch:_ Because there are no critical values, the gradient of `\(f\)` is strictly positive.
-Therefore after finite time the gradient flow `\(G\)` associated to `\(f\)` moves every point `\(\mu\)` in `\(f^{-1}(a,b]\)` to a point where `\(f(G(\mu)) \leq a\)`.
-Define a deformation retraction from `\(f^{-1}(-\infty,b]\)` to `\(f^{-1}(-\infty,a]\)` by following this flow until that point is reached.
+Therefore after finite time the gradient flow `\(G\)` associated to `\(f\)` moves every point `\(\mu\)` in `\(f^{-1}((a,b])\)` to a point where `\(f(G(\mu)) \leq a\)`.
+Define a deformation retraction from `\(f^{-1}((-\infty,b])\)` to `\(f^{-1}((-\infty,a])\)` by following this flow until that point is reached.
 
 * The second Morse lemma is potentially much more difficult as there are _a priori_ many types of critical points.
 
@@ -434,7 +443,9 @@ A category of simplicial metric thickenings should form a "bridge" between these
 
 ## Comma and restricted comma categories
 
-.defn[**Definition:**] Given two functors `\(S \colon A \to C\)` and `\(T \colon B \to C\)`, the **comma category** `\((S \downarrow T)\)` consists of triples `\((a,b,\phi)\)` where `\(a \in A\)`, `\(b \in B\)`, and `\(\phi \colon Sa \to Tb\)` as objects and pairs `\((f_A,f_B)\)` as morphisms.
+.defn[**Definition:**] Given two functors `\(S \colon A \to C\)` and `\(T \colon B \to C\)`, the **comma category** `\((S \downarrow T)\)` consists of triples `\((a,b,\phi)\)` where `\(a \in A\)`, `\(b \in B\)`, and `\(\phi \colon Sa \to Tb\)` as objects and as morphisms, pairs `\((f_A,f_B)\)` such that the following diagram commutes:
+
+.center[<img src="comm_diagram.png" width=20% height=20%>]
 
 The **restricted comma category** `\([S \downarrow T]\)` is the subcategory where we require `\(\phi\)` to be an isomorphism.
 
@@ -452,25 +463,31 @@ Denote these by `\(U\)` and `\(\square^0\)`.
 .defn[**Definition:**] The **category of simplicial metric thickenings**, MetTh, is the restricted comma category `\([U,\square^0]\)`.
 In particular, objects are triples `\(X,K,\phi\)` where `\(X\)` is a metric space, `\(K\)` is a simplicial complex, and `\(\phi\)` is an isomorphism from the set `\(X\)` to the vertex set `\(K^0\)`.
 
-* By the preceding lemmas about (co)limits, MetTh has (co)products, wedge sums, and other (co)limits inherited from Met and Scpx.
-
 * There is a **metric realization functor**, `\(\square^m\)`, from MetTh to Met given by taking the subset of `\(\mathcal{P}(X)\)` corresponding to the simplices in `\(K\)`.
 
 * **Example:** The Vietoris–Rips metric thickening is the composition of the Vietoris–Rips functor `\(\mathrm{VR}(\square;r)\)` with `\(\square^m\)`, that is `\(\mathcal{VR}(\square;r) = \mathrm{VR}(\square;r)^m\)`.
 
 ---
 
-## Simplicial metric thickenings and (co)limits
+## Simplicial Metric Thickenings and Products
+
+By the preceding lemmas about (co)limits, MetTh has (co)products, wedge sums, and other (co)limits inherited from Met and Scpx.
 
 .defn[**Propostion:**] For any simplicial metric thickenings `\(M\)` and `\(N\)`, the metric realization factors over the product up to homotopy:
 `$$
 M^m \times N^m \simeq (M \times N)^m .
 $$`
 
+The maps giving the homotopy are forming a product measure and taking a marginals.
+
 As a consequence, the Vietoris–Rips metric thickening preserves products (up to homotopy):
 `$$
 \mathcal{VR}(X;r) \times \mathcal{VR}(Y;r) \simeq \mathcal{VR}(X \times Y;r)
 $$`
+
+---
+
+## Simplicial Metric Thickenings and Wedge Sums
 
 The wedge sum is the pushout
 
@@ -480,15 +497,19 @@ where `\(\bullet\)` is the terminal object. This exists in Met, Scpx, and MetTh.
 
 .defn[**Proposition:**] The Vietoris–Rips metric thickening preserves wedge sums (up to homotopy):
 `$$
-\mathcal{VR}(X;r) \times \mathcal{VR}(Y;r) \simeq \mathcal{VR}(X \times Y;r)
+\mathcal{VR}(X;r) \vee \mathcal{VR}(Y;r) \simeq \mathcal{VR}(X \vee Y;r)
 $$`
 
+.center[<img src="rips_wedge.png" width=40% height=40%>
+
+.source[Image credit: Johnathan Bush]
+]
 ---
 
 # Open Questions:
 
 * The homotopy type of `\(\mathcal{VR}(X;r)\)` is generally unknown beyond the bound on `\(r\)` given here. The case `\(X = S^1\)` is of particular interest and is still unknown beyond `\(r = \frac{1}{3}\)`.
-* More generally, in all known examples `\(\mathcal{VR}(X;r)\)` and `\(\mathrm{VR}(X;r)\)` (with the ≤ convention) are homotopy equivalent. Does this always hold?
+* More generally, in all known examples `\(\mathcal{VR}(X;r)\)` and `\(\mathrm{VR}(X;r)\)` (with the `\(\lt\)` convention) are homotopy equivalent. Does this always hold?
 * Similarly, `\(\mathcal{VR}^\infty(X;r)\)` and `\(\mathcal{VR}(X;r)\)` are homotopy equivalent in all known examples, but this is not proven in general.
 * The Morse theory begun here should be extended. In particular, some version of a second Morse lemma ought to hold if some restriction on the class of functions considered is applied.
 * The categorical perspective leaves several paths to explore. One example is that simplicial complexes possess a homotopy theory via simplicial collapse. Does this translate to an analogous statement about simplicial metric thickenings?
