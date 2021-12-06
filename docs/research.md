@@ -2,6 +2,7 @@
 layout: page
 title: Research
 permalink: /research/
+use_math: true
 ---
 
 Currently I study applications of machine learning, topological, and geometric data analysis to medical and physiological data. As a PhD student at Colorado State University I worked with Dr. Henry Adams on the theory of Vietoris&ndash;Rips complexes in applied topology. A few of the more interesting projects from my academic work are listed below.
@@ -9,7 +10,7 @@ Currently I study applications of machine learning, topological, and geometric d
 ## Chemical Energy Landscapes and Persistent Homology
 
 
-My co-authors and I showed that with a particular model of intramolecular forces (the OPLS-UA force field) the energy landscape of any n-alkane molecule is (in a sense made precise by Morse theory) the _tensor product_ of $k$ copies of the energy landscape of butane. The energy landscape of butane is simple enough to compute analytically, and the Künneth formula for persistent homology allows us to generalize this computation to all n-alkanes. There is a lot of fun mathematics stuffed into the appendix of this paper. This was part of the NSF-funded [Delta Topology](https://delta-topology.org) project. Several members of this team are currently working on extending this project to other configurations of alkane molecules (as of December 2021).
+My co-authors and I showed that with a particular model of intramolecular forces (the OPLS-UA force field) the energy landscape of any n-alkane molecule is (in a sense made precise by Morse theory) the _tensor product_ of $$k$$ copies of the energy landscape of butane. The energy landscape of butane is simple enough to compute analytically, and the Künneth formula for persistent homology allows us to generalize this computation to all n-alkanes. There is a lot of fun mathematics stuffed into the appendix of this paper. This was part of the NSF-funded [Delta Topology](https://delta-topology.org) project. Several members of this team are currently working on extending this project to other configurations of alkane molecules (as of December 2021).
 
 ![Delta](assets/delta.jpg)
 
