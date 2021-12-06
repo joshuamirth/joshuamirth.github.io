@@ -2,17 +2,15 @@
 layout: page
 title: About
 permalink: /about/
+use_math: true
 ---
+I am a Senior Data Science Analyst in the department of Physiology and Biomedical Engineering at the [Mayo Clinic](https://www.mayo.edu) in Rochester, Minnesota. Previously I was a Postdoctoral Research Associate in the Computational Math, Science, and Engineering department at Michigan State University, and I received my PhD in mathematics from Colorado State University.
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Some of my professional interests include
+* Topological data analysis,
+* Machine learning,
+* Geometry in data science.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+You can find more about my research at [my research page](research.md).
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
-
-
-[jekyll-organization]: https://github.com/jekyll
+I write about topics related to mathematics, statistics, and data science. Occasionally that ends up on the [blog page](index.markdown).
