@@ -12,9 +12,9 @@ Currently I study applications of machine learning, topological, and geometric d
 
 My co-authors and I showed that with a particular model of intramolecular forces (the OPLS-UA force field) the energy landscape of any n-alkane molecule is (in a sense made precise by Morse theory) the _tensor product_ of $$k$$ copies of the energy landscape of butane. The energy landscape of butane is simple enough to compute analytically, and the Künneth formula for persistent homology allows us to generalize this computation to all n-alkanes. There is a lot of fun mathematics stuffed into the appendix of this paper. This was part of the NSF-funded [Delta Topology](https://delta-topology.org) project. Several members of this team are currently working on extending this project to other configurations of alkane molecules (as of December 2021).
 
-![Delta](assets/delta.jpg)
-
 * "Representations of Energy Landscapes by Sublevelset Persistent Homology: An Example with n-Alkanes." Joshua Mirth, Yanqin Zhai, Johnathan Bush, Enrique G Alvarado, Howie Jordan, Mark Heim, Bala Krishnamoorthy, Markus Pflaum, Aurora Clark, Y Z, and Henry Adams. _Journal of Chemical Physics_ 154 (2021), 114114. ([Publisher Link](https://doi.org/10.1063/5.0036747), [Preprint Link](https://arxiv.org/abs/2011.00918))
+
+![Delta](assets/delta.jpg)
 
 <!---
 Abstract:
@@ -29,11 +29,12 @@ Applied topologists like to use the [Vietoris&ndash;Rips construction](https://j
 * "Vietoris&ndash;Rips Metric Thickenings and Wasserstein Spaces." Joshua Mirth. PhD Thesis, Colorado State University Department of Mathematics, 2020. ([PDF Link](files/thesis.pdf))
 * "Metric Thickenings of Euclidean Submanifolds." Henry Adams and Joshua Mirth. _Topology and its Applications_ 254 (2019), 69-84. ([Publisher link](https://authors.elsevier.com/a/1YKoTbyCKVqOm), [Preprint Link](https://arxiv.org/abs/1709.02492), [Master's Thesis](files/masters.pdf))
 
-![Transport](assets/thesis.jpg)
 ![Metric](assets/thesis2.jpg)
-![Diagram](assets/thesis3.jpg)
 
 <!---
+![Transport](assets/thesis.jpg)
+![Diagram](assets/thesis3.jpg)
+
 Abstract: _Many simplicial complexes arising in practice have an associated metric space structure on the vertex set but not on the complex, e.g. the Vietoris–Rips complex in applied topology. We formalize a remedy by introducing a category of simplicial metric thickenings whose objects have a natural realization as metric spaces. The properties of this category allow us to prove that, for a large class of thickenings including Vietoris&ndash;Rips and Čech thickenings, the product of metric thickenings is homotopy equivalent to the metric thickenings of product spaces, and similarly for wedge sums. In addition, we study a Dowker-type theorem for simplicial thickenings._
 -->
 
@@ -42,6 +43,8 @@ Abstract: _Many simplicial complexes arising in practice have an associated metr
 Persistent homology effectively captures the global topological structure of a point cloud, but to many people's surprise it also [captures quite a bit of information about local "texture"](https://arxiv.org/abs/2103.05796). Fractals are probably the most obviously textural geometric objects, so we leveraged persistent homology to define a new notion of fractal dimension, which agrees with the classical definitions. We prove this in some cases, verify it computationally in others, and of course, those classical definitions don't always agree with each other anyway! Nice extensions of this idea have been done by several people, including [Ben Schweinhart](https://scholar.google.com/scholar?as_q=fractal&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=schweinhart&as_publication=&as_ylo=&as_yhi=&hl=en&as_sdt=0%2C24).
 
 * "A fractal dimension for measures via persistent homology." Henry Adams, Manuchehr Aminian, Elin Farnell, Michael Kirby, Joshua Mirth, Rachel Neville, Chris Peterson, and Clayton Shonkwiler. _Abel Symposia_ (2019). ([Publisher Link](https://doi.org/10.1007/978-3-030-43408-3_1), [Preprint Link](https://arxiv.org/abs/1808.01079))
+
+![PH Dimension](assets/fractal.jpg)
 
 <!---
 Abstract: We use persistent homology in order to define a family of fractal dimensions, denoted \(\dim_{\text{PH}}^i(\mu)\) for each homological dimension \(i\ge 0\), assigned to a probability measure \(\mu\) on a metric space.
@@ -58,3 +61,4 @@ We prove this limiting curve exists in the case of \(0\)-dimensional homology wh
 
 * "On the nonlinear statistics of optical flow." Henry Adams, Johnathan Bush, Brittany Carr, Lara Kassab, and Joshua Mirth. _Proceedings of Computational Topology in Image Context_, LNCS volume 11382 (2019), 151-165. ([Publisher Link](https://doi.org/10.1007/978-3-030-10828-1_12), [Preprint Link](https://arxiv.org/abs/1812.00875))
 
+![Optical Flow Torus](assets/flow.jpg)
